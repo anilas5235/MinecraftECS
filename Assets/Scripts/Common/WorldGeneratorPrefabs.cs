@@ -25,7 +25,7 @@ using Unity.Burst;
         
         //Execute with BlockType Aspect
         [BurstCompile]
-        void Execute([ChunkIndexInQuery] int index, in BlockTypeAspect BlockType)
+        void Execute([ChunkIndexInQuery] int index, BlockTypeAspect blockType)
         {
 
             //defaultPrefab = BlockType.defaultPrefab;
@@ -51,7 +51,7 @@ using Unity.Burst;
                         if (ranDice <= 20)
                         {
                             //草 88-95
-                            blockPrefab = BlockType.plantPrefab;
+                            blockPrefab = blockType.plantPrefab;
                             //matNumber = 3;
                             m_mat = Random.NextInt(88,95);
                             spawnFlag = true;
@@ -60,15 +60,15 @@ using Unity.Burst;
                         if (ranDice == 198)
                         {
                             //雲
-                            blockPrefab = BlockType.defaultPrefab;
+                            blockPrefab = blockType.defaultPrefab;
                             //matNumber = 1;
                             m_mat = 66;
-                            TreeNCloudGenerator(y,0,BlockType);
+                            TreeNCloudGenerator(y,0,blockType);
                         }
                         if (ranDice == 200)
                         {
                             //花
-                            blockPrefab = BlockType.plantPrefab;
+                            blockPrefab = blockType.plantPrefab;
                             //matNumber = 3;
                             m_mat = Random.NextInt(12,13);
                             spawnFlag = true;
@@ -77,20 +77,20 @@ using Unity.Burst;
                         if (ranDice == 199)
                         {
                             //樹
-                            TreeNCloudGenerator(y,1,BlockType);
+                            TreeNCloudGenerator(y,1,blockType);
                         }
                     }
                     //處理草皮
                     else if(i == 1)
                     {
-                            blockPrefab = BlockType.sixSidedPrefab;
+                            blockPrefab = blockType.sixSidedPrefab;
                             m_mat = 1;
                             //matNumber = 0;
                     }
                     //地底方塊(i > 1)
                     else
                     {
-                        blockPrefab = BlockType.defaultPrefab;
+                        blockPrefab = blockType.defaultPrefab;
                         //matNumber = 1;
 
                         //switch materials that underground

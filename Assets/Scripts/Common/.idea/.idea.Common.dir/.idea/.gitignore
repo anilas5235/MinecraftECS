@@ -1,18 +1,11 @@
-.DS_Store
-**/.DS_Store
-.DS_Store?
-/Library
-/Logs
-/UserSettings
-/UserSettings
-# Default ignored files
+﻿# Default ignored files
 /shelf/
 /workspace.xml
 # Rider ignored files
-/.idea.MinecraftECS.iml
-/contentModel.xml
 /projectSettingsUpdater.xml
 /modules.xml
+/.idea.Common.iml
+/contentModel.xml
 # Editor-based HTTP Client requests
 /httpRequests/
 # Datasource local storage ignored files

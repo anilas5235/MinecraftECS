@@ -1,11 +1,10 @@
  using UnityEngine;
  using Unity.Mathematics;
  using Unity.Entities;
- using Unity.Transforms;
- using Unity.Collections;
  using Unity.Physics;
+ using Unity.Transforms;
 
-//[UpdateBefore(typeof(LateSimulationSystemGroup))]
+ //[UpdateBefore(typeof(LateSimulationSystemGroup))]
 partial class PlayerMovementSystem : SystemBase
 {
     protected override void OnUpdate()
@@ -28,9 +27,8 @@ partial class PlayerMovementSystem : SystemBase
         var cameraRotation = cameraTransform.rotation.eulerAngles;
         currentQuaternion = Quaternion.Euler(0, cameraRotation.y, 0);
         
-        Entities
-            .WithAll<PlayerEntity>()
-           .ForEach( ( ref TransformAspect transform, ref PhysicsVelocity vel) =>
+        Entities.WithAll<PlayerEntity>()
+           .ForEach( ( ref LocalTransform transform, ref PhysicsVelocity vel) =>
             {
                 
 
@@ -41,16 +39,16 @@ partial class PlayerMovementSystem : SystemBase
                 //Movement
                 if(inputs.z != 0)
                 {
-                    PlayerPos = transform.Forward.xz * inputs.z * speed;
+                    PlayerPos = transform.Forward().xz * inputs.z * speed;
                 }
                 if(inputs.x != 0)
                 {
-                    PlayerPos += transform.Right.xz * inputs.x * speed;
+                    PlayerPos += transform.Right().xz * inputs.x * speed;
                 }
                 //Jump check
                 if(inputs.y > 0)
                 {
-                    vel.Linear.y = transform.Up.y * speed;
+                    vel.Linear.y = transform.Up().y * speed;
                 }
 
                 //push to Velocity if inputs = 0 than Velocity = 0;

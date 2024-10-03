@@ -19,6 +19,7 @@ using Unity.Jobs;
     protected override void OnCreate()
     {
         m_BeginSimECBSystem = World.GetExistingSystemManaged<BeginSimulationEntityCommandBufferSystem>();
+        RequireForUpdate<BlockType>();
     }
 
     protected override void OnUpdate()
